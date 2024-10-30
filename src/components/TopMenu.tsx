@@ -10,6 +10,9 @@ export default function TopMenu(){
             height={0} 
             width = {0} 
             sizes = '100vh'/>
+            <TopMenuItem title='Select Course' pageRef='/course'/>
+            <TopMenuItem title='Your Reservation' pageRef='/reservation'/>
+            <TopMenuItem title='about us' pageRef='/about'/>
 
         </div>
     );
