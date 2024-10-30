@@ -7,10 +7,10 @@ import TopMenu from "@/components/TopMenu";
 export default function Home() {
   return (
     <main>
-      <TopMenu/>
-      <Banner/>
       <div>
-        </div>
+        <TopMenu/>
+        <Banner/>
+      </div>
     </main>
   );
 }
