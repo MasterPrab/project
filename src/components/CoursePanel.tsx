@@ -47,7 +47,7 @@ export default function CoursePanel() {
     ]
         */
 
-    if(!courseResponse) return(<p>Car Panel is loading...</p>)
+    if(!courseResponse) return(<p>Course Panel is loading...</p>)
 
     return(
         <div>
@@ -55,7 +55,7 @@ export default function CoursePanel() {
            alignContent:"space-around" }}>
                 {
                     courseResponse.data.map((courseItem:Object)=>(
-                        <Link href={`/car/${courseItem.id}`} className = "w-1/5">
+                        <Link href={`/course/${courseItem.id}`} className = "w-1/5">
                         <ProductCard courseName = {courseItem.model} imgSrc={courseItem.picture}
                         onCompare={(course:string)=>dispatchCompare({type:'add',courseName:course})}/>
                         </Link>
