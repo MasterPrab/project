@@ -7,6 +7,9 @@ main {
   justify-content: flex-start;
 }
 
+.mainContent {
+  padding-top: 60px; /* Adjust based on TopMenu's height */
+}
 
 .description {
   display: inherit;

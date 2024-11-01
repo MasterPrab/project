@@ -28,3 +28,14 @@
     color: grey;
 
 }
+
+.topMenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure it stays above other elements */
+    background-color: #ffffff; /* Match the background color for a clean look */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for separation */
+    padding: 10px 20px; /* Adjust padding as needed */
+}
