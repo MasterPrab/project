@@ -14,7 +14,7 @@ export default function TopMenu() {
           alt="logo" 
           width={50}  // Set appropriate dimensions
           height={50} 
-          priority // Ensures faster load time
+          priority // Ensures faster load times
         />
       </Link>
 
