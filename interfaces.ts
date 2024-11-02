@@ -1,6 +1,6 @@
 export interface ReservationItem {
-    carId: string;
-    carModel: string;
+    courseId: string;
+    courseModel: string;
     numOfDays: number;
     pickupDate: string;
     pickupLocation: string;
