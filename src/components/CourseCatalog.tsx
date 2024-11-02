@@ -10,7 +10,7 @@ export default async function CourseCatalog({courseJson}:{courseJson:object}){
            alignContent:"space-around" }}>
                 {
                     courseJsonReady.data.map((courseItem)=>(
-                        <Link href={`/car/${courseItem.id}`} className = "w-1/5">
+                        <Link href={`/course/${courseItem.id}`} className = "w-1/5">
                         <ProductCard courseName = {courseItem.model} imgSrc={courseItem.picture}
                         />
                         </Link>
