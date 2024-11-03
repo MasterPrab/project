@@ -1,5 +1,5 @@
 import {resolve} from "path"
-export default async function getCourse () {
+export default async function getCourses () {
 
     await new Promise((resolve)=>setTimeout(resolve, 2000))
 
