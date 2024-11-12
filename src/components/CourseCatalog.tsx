@@ -1,17 +1,17 @@
 import Link from "next/link"
 import ProductCard from "./ProductCard"
 
-export default async function CourseCatalog({courseJson}:{courseJson:object}){
-    const courseJsonReady = await courseJson
+export default  function CourseCatalog({courseJson}:{courseJson:object}){
+    
     return (
         <>
-        Explore{courseJsonReady.count}model in our catalog
-        <div style={{margin:"30px", display:'flex',flexDirection:"row",flexWrap:"wrap",justifyContent:"space-around",
-           alignContent:"space-around" }}>
+        Explore{courseJson.count}model in our catalog
+        <div style={{margin:"20px", display:'flex',flexDirection:"row",flexWrap:"wrap",justifyContent:"space-around",
+           alignContent:"space-around", padding:'10px' }}>
                 {
-                    courseJsonReady.data.map((courseItem)=>(
-                        <Link href={`/course/${courseItem.id}`} className = "w-1/5">
-                        <ProductCard courseName = {courseItem.model} imgSrc={courseItem.picture}
+                    courseJson.data.map((courseItem:Object)=>(
+                        <Link href={`/course/${courseItem.id}`} className = "w-1/2">
+                        <ProductCard courseName = {courseItem.name} imgSrc={courseItem.picture}
                         />
                         </Link>
                     ))

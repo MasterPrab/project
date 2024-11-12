@@ -1,5 +1,5 @@
 import Image from "next/image"
-import getCourse from "@/libs/getCourses"
+import getCourse from "@/libs/getCourse"
 import Link from "next/link"
 export default async function courseDetailPage({params}:{params:{cid:string}}){
 
@@ -17,18 +17,17 @@ export default async function courseDetailPage({params}:{params:{cid:string}}){
     
     return(
         <main className="text-center p-5">
-            <h1 className="text-lg font-medium">{courseDetail.data.model}</h1>
+            <h1 className="text-lg font-medium">{courseDetail.data.name}</h1>
             <div className="flex flex-row my-5">
                 <Image src = {courseDetail.data.picture}
                 alt = 'course Image'
                 width = {0} height={0} sizes="100vw"
                 className="rounded-lg w-[30%]"/>
-                <div className="text-md mx-5 text-left">{courseDetail.data.description}
-                <div className="text-md mx-5">Doors: {courseDetail.data.doors}</div>
-                <div className="text-md mx-5">Seats: {courseDetail.data.seats}</div>
-                <div className="text-md mx-5">Large Bags: {courseDetail.data.largebags}</div>
-                <div className="text-md mx-5">Small Bags: {courseDetail.data.smallbags}</div>
-                <div className="text-md mx-5">Daily rental rate: {courseDetail.data.dayrate}(insurance included)</div>
+                <div className="text-md mx-5 text-left">Address: {courseDetail.data.address}
+                <div className="text-md mx-5">Province: {courseDetail.data.province}</div>
+                <div className="text-md mx-5">Postal Code: {courseDetail.data.postalcode}</div>
+                <div className="text-md mx-5">Tel: {courseDetail.data.tel}</div>
+             
 
                 <Link href={`/reservations?id=${params.cid}&model=${courseDetail.data.model}`}>
                 <button className="block rounded-md bg-sky-600 hover:bg-indigo-600 px-3 py-2 text-white shadow-sm">
