@@ -25,7 +25,7 @@ export default async function TopMenu() {
 
       {/* Navigation Menu Items */}
       <TopMenuItem title="Select Shops" pageRef="/course" />
-      <TopMenuItem title="Your Reservation" pageRef="/reservation" />
+      <TopMenuItem title="Your Reservation" pageRef="/cart" />
       <TopMenuItem title="about us" pageRef="/about" />
     
       {
