@@ -17,13 +17,14 @@ export default function Reservations() {
     const dispatch = useDispatch<AppDispatch>();
 
     const makeReservation = () => {
-        if (cid && model && pickupDate && pickupTime) {
+        if (cid && model && pickupDate && pickupTime && pickupPrice) {
             const item: ReservationItem = {
                 courseId: cid,
                 courseModel: model,
                 pickupDate: dayjs(pickupDate).format("YYYY/MM/DD"),
                 pickupTime: pickupTime, // Add the time here
                 pickupLocation: pickupLocation,
+                pickupPrice: pickupPrice,
             };
             dispatch(addReservation(item));
         }
@@ -32,6 +33,7 @@ export default function Reservations() {
     const [pickupDate, setPickupDate] = useState<Dayjs | null>(null);
     const [pickupTime, setPickupTime] = useState<string>(''); // New state for time
     const [pickupLocation, setPickupLocation] = useState<string>('BKK');
+    const [pickupPrice, setPickupPrice] = useState<string>('2000');
 
     return (
         <main className={styles.reservationsContainer}>
@@ -44,6 +46,7 @@ export default function Reservations() {
                     onDateChange={(value: Dayjs) => setPickupDate(value)}
                     onTimeChange={(value: string) => setPickupTime(value)} // New onTimeChange prop
                     onLocationChange={(value: string) => setPickupLocation(value)}
+                    onPriceChange={(value: string) => setPickupPrice(value)}
                 />
             </div>
 

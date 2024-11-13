@@ -21,6 +21,9 @@ export default function ReservationCart() {
                     <div className={styles.details}>
                         <span className={styles.label}>Time:</span> {reservationItem.pickupTime} 
                     </div>
+                    <div className={styles.details}>
+                        <span className={styles.label}>Price:</span> {reservationItem.pickupPrice} 
+                    </div>
                     <button
                         className={styles.button}
                         onClick={() => dispatch(removeReservation(reservationItem))}
