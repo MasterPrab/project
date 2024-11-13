@@ -1,21 +1,17 @@
-import getCourses from "@/libs/getCourses"
-import CourseCatalog from "@/components/CourseCatalog"
-import { Suspense } from "react"
-import { LinearProgress } from "@mui/material"
-import CoursePanel from "@/components/CoursePanel"
+import getCourses from "@/libs/getCourses";
+import CourseCatalog from "@/components/CourseCatalog";
+import TopMenu from "@/components/TopMenu";
+import styles from './course.module.css';
 
-export default  async function Course(){
-    const courses =  await getCourses()
+export default async function Course() {
+    const courses = await getCourses();
     return (
-        <main className="text-center p-5">
-            <h1 className="text-xl font-medium">Select Your Travel Partner</h1>
-            
-            <CourseCatalog courseJson={courses}/>
-            
-            
-           
-            
-        </main>
-
-    )
+        <>
+            <TopMenu />
+            <main className={styles.courseContainer}>
+                <h1 className={styles.heading}>Select Your Travel Partner</h1>
+                <CourseCatalog courseJson={courses} />
+            </main>
+        </>
+    );
 }

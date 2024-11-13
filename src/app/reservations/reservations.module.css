@@ -1,6 +1,38 @@
-.sectionlayout {
+/* reservations.module.css */
+
+.reservationsContainer {
     display: flex;
-    flex-direction: row;
-    padding: 10px;
-    
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh; /* Slightly lower height to bring content higher */
+    text-align: center;
+    padding-top: 10vh; /* Adjust to lift the content a bit higher */
+}
+
+.reservationTitle {
+    font-size: 2rem;
+    font-weight: medium;
+    margin-bottom: 20px;
+}
+
+.reservationDetails {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+}
+
+.reserveButton {
+    margin-top: 20px;
+    background-color: #00aaff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.reserveButton:hover {
+    background-color: #005f99;
 }

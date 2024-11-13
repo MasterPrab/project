@@ -1,0 +1,46 @@
+/* courseDetail.module.css */
+
+.courseDetailContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Full viewport height */
+    text-align: center;
+    padding: 20px;
+}
+
+.courseContent {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+    width: 80%;
+    max-width: 800px;
+    text-align: left;
+}
+
+.courseImage {
+    width: 30%;
+    border-radius: 8px;
+}
+
+.courseInfo {
+    font-size: 1rem;
+    color: #333;
+}
+
+.reservationButton {
+    margin-top: 20px;
+    background-color: #00aaff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.reservationButton:hover {
+    background-color: #005f99;
+}

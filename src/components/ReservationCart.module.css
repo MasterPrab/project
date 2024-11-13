@@ -1,0 +1,49 @@
+/* ReservationCart.module.css */
+.container {
+    padding: 20px;
+}
+
+.itemCard {
+    background-color: #E2E8F0; /* Slate-200 */
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px; /* Increased margin to space out each card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.courseTitle {
+    font-size: 1.5rem; /* 24px */
+    font-weight: 600;
+    margin-bottom: 12px; /* Added extra margin */
+}
+
+.details {
+    font-size: 1.125rem; /* 18px */
+    margin-bottom: 8px; /* Increased spacing between details */
+    color: #374151; /* Gray-700 */
+}
+
+.label {
+    font-weight: 500;
+    color: #1F2937; /* Gray-900 */
+}
+
+.button {
+    align-self: flex-start;
+    background-color: #0284C7; /* Sky-600 */
+    color: #FFFFFF;
+    padding: 10px 16px;
+    border-radius: 8px;
+    margin-top: 16px; /* Increased top margin to separate button from text */
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+}
+
+.button:hover {
+    background-color: #4338CA; /* Indigo-600 */
+}

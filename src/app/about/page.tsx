@@ -1,8 +1,13 @@
+
+import styles from './about.module.css';
+
 export default function About() {
-    return(
-        <main>
-            <div>About us</div>
+    return (
+        <>
             
-        </main>
+            <main className={styles.aboutContainer}>
+                <div>About us</div>
+            </main>
+        </>
     );
 }

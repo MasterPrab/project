@@ -1,11 +1,15 @@
 import Link from "next/link";
-import styles from './topmenu.module.css'
+import styles from './topmenu.module.css';
 
-export default function TopMenuItem( { title , pageRef } : { title:string , pageRef:string} )  {
-    return(
-        <Link href={pageRef}className = {styles.itemcontainer}>
+interface TopMenuItemProps {
+    title: string;
+    pageRef: string;
+}
+
+export default function TopMenuItem({ title, pageRef }: TopMenuItemProps) {
+    return (
+        <Link href={pageRef} className={styles.itemcontainer} aria-label={title}>
             {title}
         </Link>
     );
-
 }

@@ -1,41 +1,47 @@
-.menucontainer{
+.menucontainer {
     height: 50px;
     background-color: aliceblue;
     position: fixed;
-    margin: 0px;
-    left: 0px;
-    right: 0px;
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 30;
     border-top: 1px solid lightgray;
     border-bottom: 1px solid lightgray;
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .logoimg {
     height: 100%;
     width: auto;
-
+    margin-right: 20px;
 }
 
-.itemcontainer{
-    width: 120px;
-    text-align: center;
-    margin-top: auto;
-    margin-bottom: auto;
+.itemcontainer {
+    flex-grow: 1;
+    display: flex;
+    gap: 20px; /* Spacing between items */
+    align-items: center;
+    justify-content: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 10pt;
     color: grey;
-
 }
 
-.topMenu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000; /* Ensure it stays above other elements */
-    background-color: #ffffff; /* Match the background color for a clean look */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for separation */
-    padding: 10px 20px; /* Adjust padding as needed */
+.authButton {
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    color: #00acc1; /* Cyan color for auth buttons */
+    cursor: pointer;
+    padding: 0 10px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.authButton:hover {
+    color: #007bff; /* Darker blue on hover */
 }

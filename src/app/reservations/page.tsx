@@ -1,69 +1,58 @@
-"use client"
+"use client";
 import LocationDateReserve from "@/components/LocationDateReserve";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
-import { useDispatch, UseDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { ReservationItem } from "../../../interfaces";
 import { addReservation } from "@/redux/features/cartSlice";
+import styles from './reservations.module.css';
 
-export default function Reservations ( ) {
-
-    const urlParams = useSearchParams ()
-    const cid = urlParams.get('id')
-    const model = urlParams.get ('model')
-
-    
+export default function Reservations() {
+    const urlParams = useSearchParams();
+    const cid = urlParams.get('id');
+    const model = urlParams.get('model');
 
     const dispatch = useDispatch<AppDispatch>();
 
     const makeReservation = () => {
-      if (cid && model && pickupDate && returnDate) {
-        const item: ReservationItem = {
-            courseId: cid,
-            courseModel: model,
-            numOfDays: returnDate.diff(pickupDate, "day"),
-            pickupDate: dayjs(pickupDate).format("YYYY/MM/DD"),
-            pickupLocation: pickupLocation,
-            returnDate: dayjs(returnDate).format("YYYY/MM/DD"),
-            returnLocation: returnLocation
-        }      
-        dispatch(addReservation(item))
-      }
-    }
-
-
+        if (cid && model && pickupDate && pickupTime) {
+            const item: ReservationItem = {
+                courseId: cid,
+                courseModel: model,
+                pickupDate: dayjs(pickupDate).format("YYYY/MM/DD"),
+                pickupTime: pickupTime, // Add the time here
+                pickupLocation: pickupLocation,
+            };
+            dispatch(addReservation(item));
+        }
+    };
 
     const [pickupDate, setPickupDate] = useState<Dayjs | null>(null);
+    const [pickupTime, setPickupTime] = useState<string>(''); // New state for time
     const [pickupLocation, setPickupLocation] = useState<string>('BKK');
-    const [returnDate, setReturnDate] = useState<Dayjs | null>(null);
-    const [returnLocation, setReturnLocation] = useState<string>('BKK');
 
-    return(
-        <main className= "w-[100%] flex flex-col items-center space-y-4">
-            <div className="text-2xl font-medium">New Reservation</div>
-            <div className="text-2xl font-medium">Car:{model}</div>
+    return (
+        <main className={styles.reservationsContainer}>
+            <div className={styles.reservationTitle}>New Reservation</div>
+            <div className={styles.reservationTitle}>Course: {model}</div>
 
-            <div className="w-fit space-y-2">
-                <div className="text-md text-left text-gray-600">Pick-Up Date and Location</div>
+            <div className={styles.reservationDetails}>
+                <div className="text-md text-left text-gray-600">Pick-Up Date, Time, and Location</div>
                 <LocationDateReserve 
-                onDateChange={(value: Dayjs) => setPickupDate(value)}
-                onLocationChange={(value: string) => setPickupLocation(value)}
-                />
-                <div className="text-md text-left text-gray-600">Return Date and Location</div>
-                <LocationDateReserve 
-                onDateChange={(value: Dayjs) => setReturnDate(value)}
-                onLocationChange={(value: string) => setReturnLocation(value)}
+                    onDateChange={(value: Dayjs) => setPickupDate(value)}
+                    onTimeChange={(value: string) => setPickupTime(value)} // New onTimeChange prop
+                    onLocationChange={(value: string) => setPickupLocation(value)}
                 />
             </div>
 
-            <button className="block rounded-md bg-sky-600 hover:bg-indigo-600 px-3 py-2 text-white shadow-sm"
-            onClick={makeReservation}>
-                Reserve this car
+            <button
+                className={styles.reserveButton}
+                onClick={makeReservation}
+            >
+                Reserve
             </button>
-
         </main>
     );
-
 }

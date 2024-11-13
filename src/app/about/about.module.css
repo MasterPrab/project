@@ -1,0 +1,9 @@
+.aboutContainer {
+    display: flex;
+    align-items: flex-start; /* Start alignment moves text to the top */
+    justify-content: center;
+    height: 100vh; /* Full viewport height */
+    text-align: center;
+    font-size: 1.5rem;
+    padding-top: 8vh; /* Adjust as needed to position text lower or higher */
+}

@@ -1,0 +1,18 @@
+/* course.module.css */
+
+.courseContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    padding-top: 10vh; /* Move content higher */
+}
+
+.courseContainer h1 {
+    font-size: 1.5rem;
+    font-weight: medium;
+    margin-bottom: 20px;
+    margin-top: 1vh; /* Larger negative margin to lift heading */
+}

@@ -11,6 +11,12 @@
   --primary-color: #0071ff; /* Accent color */
 }
 
+
+.mainContent {
+  padding-top: 70px; /* Adjust based on TopMenu's height */
+}
+
+
 /* Reset all padding and margins */
 * {
   box-sizing: border-box;
