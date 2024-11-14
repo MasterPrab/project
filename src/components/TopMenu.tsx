@@ -26,6 +26,7 @@ export default async function TopMenu() {
       <TopMenuItem title="Select Shops" pageRef="/course" />
       <TopMenuItem title="Your Reservation" pageRef="/cart" />
       <TopMenuItem title="About Us" pageRef="/about" />
+      <TopMenuItem title="Create new User" pageRef="/register" />
     
       {/* Conditional Sign-In / Sign-Out based on session */}
       {session ? (
