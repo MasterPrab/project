@@ -8,17 +8,22 @@ import { AppDispatch } from "@/redux/store";
 import { ReservationItem } from "../../../interfaces";
 import { addReservation } from "@/redux/features/cartSlice";
 import styles from './reservations.module.css';
+import { TextField } from "@mui/material";
 
 export default function Reservations() {
     const urlParams = useSearchParams();
     const cid = urlParams.get('id');
     const model = urlParams.get('model');
+    const [name, setName] = useState('')
+    const [Lastname, setLastname] = useState('')
 
     const dispatch = useDispatch<AppDispatch>();
 
     const makeReservation = () => {
-        if (cid && model && pickupDate && pickupTime && pickupPrice) {
+        if (cid && model && pickupDate && pickupTime && pickupPrice && name && Lastname) {
             const item: ReservationItem = {
+                name:name,
+                surname:Lastname,
                 courseId: cid,
                 courseModel: model,
                 pickupDate: dayjs(pickupDate).format("YYYY/MM/DD"),
@@ -39,6 +44,13 @@ export default function Reservations() {
         <main className={styles.reservationsContainer}>
             <div className={styles.reservationTitle}>New Reservation</div>
             <div className={styles.reservationTitle}>Course: {model}</div>
+            <div>
+            <TextField name ='Name' id="Name" label="Name" variant="standard" value={name}
+                onChange={(e) => setName(e.target.value)} />
+            
+            
+             <TextField name ='Lastname' id="Lastname" label="Lastname" variant="standard" value={Lastname}></TextField>
+             </div>
 
             <div className={styles.reservationDetails}>
                 <div className="text-md text-left text-gray-600">Pick-Up Date, Time, and Location</div>
