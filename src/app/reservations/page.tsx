@@ -49,7 +49,8 @@ export default function Reservations() {
                 onChange={(e) => setName(e.target.value)} />
             
             
-             <TextField name ='Lastname' id="Lastname" label="Lastname" variant="standard" value={Lastname}></TextField>
+             <TextField name ='Lastname' id="Lastname" label="Lastname" variant="standard" value={Lastname}
+             onChange={(e) => setLastname(e.target.value)} />
              </div>
 
             <div className={styles.reservationDetails}>

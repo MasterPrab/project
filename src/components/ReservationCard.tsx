@@ -16,6 +16,12 @@ export default function ReservationCart() {
                         {reservationItem.courseModel}
                     </div>
                     <div className={styles.details}>
+                        <span className={styles.label}>Name:</span> {reservationItem.name} 
+                    </div>
+                    <div className={styles.details}>
+                        <span className={styles.label}>Surname:</span> {reservationItem.surname} 
+                    </div>
+                    <div className={styles.details}>
                         <span className={styles.label}>Pick-up:</span> {reservationItem.pickupDate} from {reservationItem.pickupLocation}
                     </div>
                     <div className={styles.details}>
