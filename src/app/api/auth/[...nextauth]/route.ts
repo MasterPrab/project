@@ -15,11 +15,11 @@ export const authOptions:AuthOptions ={
             // e.g. domain, username, password, 2FA token, etc.
             // You can pass any HTML attribute to the <input> tag through the object.
             credentials: {
-              email: { label: "Email", type: "text", placeholder: "Email" },
+              email: { label: "Email", type: "email", placeholder: "Email" },
               password: { label: "Password", type: "password" }
             },
             async authorize(credentials, req) {
-                console.log(credentials);
+                
                 if(!credentials) return null
                 const user = await userLogin(credentials.email,credentials.password)
                 console.log(user);

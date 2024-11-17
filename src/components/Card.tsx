@@ -1,20 +1,18 @@
-import styles from './card.module.css'
-import Image from 'next/image'
+import styles from './card.module.css';
+import Image from 'next/image';
 
-export default function Card(){
-    return(
-        <div className = {styles.card}>
-            <div className = {styles.cardimg}>
-                <Image src = {'/img/vaccine.jpg'}
-                alt='Vaccine'
-                fill = {true}
-                objectFit='cover'
-                />
-            </div>
-            <div className = {styles.cardText}>Vaccine1</div>
-        </div>
-
-    );
-
-
+export default function Card({ title, imageSrc }: { title: string; imageSrc: string }) {
+  return (
+    <div className={styles.card}>
+      <div className={styles.cardimg}>
+        <Image
+          src={imageSrc}
+          alt={title}
+          fill={true}
+          objectFit="cover"
+        />
+      </div>
+      <div className={styles.cardText}>{title}</div>
+    </div>
+  );
 }

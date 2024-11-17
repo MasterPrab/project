@@ -1,10 +1,41 @@
-main {
+.main {
   padding: 0;
   margin: 0;
   min-height: 100vh; /* Ensure main content takes up the full height of the viewport */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+}
+
+.cardContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* Space between cards */
+  margin-top: 20px;
+  flex-wrap: wrap; /* Ensures wrapping on smaller screens */
+}
+
+.reserveText {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.reserveText p {
+  margin: 0;
+}
+
+.clickHere {
+  color: orange; /* Highlight the link */
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.clickHere:hover {
+  color: darkorange; /* Slightly change color on hover */
 }
 
 .description {

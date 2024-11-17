@@ -1,9 +1,10 @@
 .aboutContainer {
     display: flex;
-    align-items: flex-start; /* Start alignment moves text to the top */
-    justify-content: center;
+    flex-direction: column; /* Ensures children stack vertically */
+    align-items: center; /* Centers items horizontally */
+    justify-content: flex-start; /* Aligns items to the top */
     height: 100vh; /* Full viewport height */
-    text-align: center;
+    text-align: center; /* Centers the text content */
     font-size: 1.5rem;
-    padding-top: 8vh; /* Adjust as needed to position text lower or higher */
+    padding-top: 10vh; /* Adjusts spacing from the top */
 }

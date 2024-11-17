@@ -2,39 +2,43 @@ import { getServerSession } from "next-auth"
 import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 import getUserProfile from "@/libs/getUserProfile"
 import { dbConnect } from "@/db/dbConnect"
-import Car from "@/db/models/Car"
+import Shop from "@/db/models/Shop"
+import { revalidateTag } from "next/cache"
+import { redirect } from "next/navigation"
 
 export default async function DashboardPage(){
     
-    const addCar = async (addCarForm: FormData) => {
+    const addShop = async (addShopForm: FormData) => {
         "use server"
-        const model = addCarForm.get("model")
-        const description = addCarForm.get("desc")
-        const picture = addCarForm.get("picture")
-        const seats = addCarForm.get("seats")
-        const doors = addCarForm.get("doors")
-        const largebags = addCarForm.get("largebags")
-        const smallbags = addCarForm.get("smallbags")
-        const automatic = true
-        const dayRate = addCarForm.get("dayRate")
+        const name = addShopForm.get("name")
+        const pricelevel = addShopForm.get("pricelevel")
+        const picture = addShopForm.get("picture")
+        const address = addShopForm.get("address")
+        const province = addShopForm.get("province")
+        const postalcode = addShopForm.get("postalcode")
+        const tel = addShopForm.get("tel")
+        
+        
 
         try{
-            await dbConnect
-            const car = await Car.create({
-                "model": model,
-                "description": description,
+            await dbConnect()
+            const shop = await Shop.create({
+                "name": name,
+                "pricelevel": pricelevel,
                 "picture": picture,
-                "seats": seats,
-                "doors": doors,
-                "largebags": largebags,
-                "smallbags": smallbags,
-                "automatic": automatic,
-                "dayRate": dayRate
+                "address": address,
+                "province": province,
+                "postalcode": postalcode,
+                "tel": tel,
+                
+                
             })
         }
         catch(error){
             console.log(error)
         }
+        revalidateTag('shops')
+        redirect('/course')
       }
 
     const session = await getServerSession(authOptions)
@@ -53,19 +57,19 @@ export default async function DashboardPage(){
 
             {
             (profile.data.role == "admin") ? 
-            <form>
-                <div className='text-xl text-blue-700'>Create Car Model</div>
+            <form action={addShop}>
+                <div className='text-xl text-blue-700'>Add Shop Info</div>
                 <div className='flex items-center w-1/2 my-2'>
-                    <label className='w-auto block text-gray-700 pr-4' htmlFor='model'> Model </label>
-                    <input type='text' required id='model' name='model' 
-                        placeholder='Car Model' 
+                    <label className='w-auto block text-gray-700 pr-4' htmlFor='name'> Name </label>
+                    <input type='text' required id='name' name='name' 
+                        placeholder='Shop name' 
                         className='bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus:outline-none focus:border-blue-400' 
                     />
                 </div>
                 <div className='flex items-center w-1/2 my-2'>
-                    <label className='w-auto block text-gray-700 pr-4' htmlFor='model'> Description </label>
-                    <input type='text' required id='desc' name='desc' 
-                        placeholder='Car Description' 
+                    <label className='w-auto block text-gray-700 pr-4' htmlFor='pricelevel'> Price Level </label>
+                    <input type='number' required id='pricelevel' name='pricelevel' 
+                        placeholder='Price Level' min={1} max={4}
                         className='bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus:outline-none focus:border-blue-400' 
                     />
                 </div>
@@ -77,48 +81,42 @@ export default async function DashboardPage(){
                     />
                 </div>
                 <div className='flex items-center w-1/2 my-2'>
-                    <label className='w-auto block text-gray-700 pr-4' htmlFor='seats'>
-                        Seats </label>
-                    <input type='number' required id='seats' name='seats' placeholder='4'
-                    min={0} max={50}
+                    <label className='w-auto block text-gray-700 pr-4' htmlFor='address'>
+                        Address </label>
+                    <input type='text' required id='address' name='address' placeholder='address'
+                    
                     className='bg-white border-2 border-gray-200 rounded w-auto p-2 
                     text-gray-700 focus:outline-none focus:border-blue-400' />
-                    <label className='w-auto block text-gray-700 pr-4 ml-5' htmlFor='doors'>
-                    Doors</label>
-                    <input type='number' required id='doors' name='doors' placeholder='4'
-                    min={0} max={8}
+                    <label className='w-auto block text-gray-700 pr-4' htmlFor='province'>
+                        Province </label>
+                    <input type='text' required id='province' name='province' placeholder='province' 
+                    
                     className='bg-white border-2 border-gray-200 rounded w-auto p-2 
                     text-gray-700 focus:outline-none focus:border-blue-400' />
-                        <input type="checkbox" id="automatic" name="automatic"
-                        className="ml-5 mr-2" /><span>Auto</span>
-                </div>
+                    <label className='w-auto block text-gray-700 pr-4 ml-5' htmlFor='postalcode'>
+                    Postal Code</label>
+                    <input type='number' required id='postalcode' name='postalcode' placeholder='postalcode' min={10000} max={99999}
+                    
+                    className='bg-white border-2 border-gray-200 rounded w-auto p-2 
+                    text-gray-700 focus:outline-none focus:border-blue-400' />
 
-                <div className='flex items-center w-1/2 my-2'>
-                    <label className='w-auto block text-gray-700 pr-4' htmlFor='largebags'>
-                        Large bags </label>
-                    <input type='number' required id='largebags' name='largebags' placeholder='2'
-                    min={0} max={10}
+                    <label className='w-auto block text-gray-700 pr-4 ml-5' htmlFor='Tel'>
+                        Tel</label>
+                    <input type='text' required id='tel' name='tel' placeholder='Tel'
+                    
                     className='bg-white border-2 border-gray-200 rounded w-auto p-2 
                     text-gray-700 focus:outline-none focus:border-blue-400' />
-                    <label className='w-auto block text-gray-700 pr-4 ml-5' htmlFor='smallbags'>
-                    small bags</label>
-                    <input type='number' required id='smallbags' name='smallbags' placeholder='2'
-                    min={0} max={10}
-                    className='bg-white border-2 border-gray-200 rounded w-auto p-2 
-                    text-gray-700 focus:outline-none focus:border-blue-400' />
+
+
                         
                 </div>
+
                 
-                <div className='flex items-center w-1/2 my-2'>
-                    <label className='w-auto block text-gray-700 pr-4' htmlFor='dayRate'> Rate </label>
-                    <input type='text' required id='dayRate' name='dayRate' 
-                        placeholder='daylyRate (including insurance)' 
-                        className='bg-white border-2 border-gray-200 rounded w-full p-2 text-gray-700 focus:outline-none focus:border-blue-400' 
-                    />
-                </div>
+                
+                
                 
                 <button type="submit" className='bg-blue-500 hover:bg-blue-700 text-white p-2'>
-                Add New Car
+                Add New Shop
                 </button>
             </form>
             : null

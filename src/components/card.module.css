@@ -1,7 +1,7 @@
-div.card{
+div.card {
     width: 300px;
     height: 300px;
-    background-color: rgb(105, 173, 66);
+    background-color: orange; /* Changed from white to orange */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     display: flex;
@@ -10,15 +10,23 @@ div.card{
     padding-top: 20px;
 }
 
-div.cardimg{
+div.cardimg {
     width: 250px;
     height: 250px;
     position: relative;
     display: flex;
 }
 
-div.cardText{
+div.cardText {
     text-align: center;
     font-size: 18px;
-    
+}
+
+.cardContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Space between cards */
+    margin-top: 20px;
+    flex-wrap: wrap; /* Ensures wrapping on smaller screens */
 }

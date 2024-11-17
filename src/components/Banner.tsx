@@ -1,7 +1,13 @@
+'use client'
+import { Session } from 'inspector';
 import styles from './banner.module.css'
 import Image from 'next/image'
+import { useSession } from 'next-auth/react';
 
 export default function Banner(){
+    const {data:session} = useSession()
+    console.log(session)
+    
     return(
      <div className = {styles.banner}>
         <Image src={'/img/messagecover.png'}
