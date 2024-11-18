@@ -1,12 +1,30 @@
 "use client";
+
 import { AppDispatch, useAppSelector } from "@/redux/store";
 import { useDispatch } from "react-redux";
 import { removeReservation } from "@/redux/features/cartSlice";
+import { useSession } from "next-auth/react"; // Assuming you're using NextAuth for user session
 import styles from './ReservationCart.module.css';
 
 export default function ReservationCart() {
+    const { data: session } = useSession(); // Get session data (role and name)
+    const loggedInUserName = session?.user?.name || "Guest"; // Get logged-in user's name
+    const loggedInUserRole = session?.user?.role || "user"; // Get logged-in user's role
     const carItems = useAppSelector((state) => state.cartSlice.carItems); // Get reservations from Redux
     const dispatch = useDispatch<AppDispatch>();
+
+    // Function to handle the removal
+    const handleRemove = (reservationItem: any) => {
+        if (
+            loggedInUserRole === "admin" || // Admin can remove any reservation
+            reservationItem.reservedBy === loggedInUserName // Users can only remove their own reservations
+        ) {
+            dispatch(removeReservation(reservationItem)); // Remove the item from cart
+        } else {
+            // Show a pop-up message if not allowed
+            alert("You can only remove your own reservations."); // Pop-up message
+        }
+    };
 
     return (
         <div className={styles.container}>
@@ -47,7 +65,7 @@ export default function ReservationCart() {
                     {/* Remove Button */}
                     <button
                         className={styles.button}
-                        onClick={() => dispatch(removeReservation(reservationItem))}
+                        onClick={() => handleRemove(reservationItem)}
                     >
                         Remove from Cart
                     </button>
