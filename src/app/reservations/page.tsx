@@ -5,7 +5,6 @@ import { useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
-import { ReservationItem } from "../../../interfaces";
 import { addReservation } from "@/redux/features/cartSlice";
 import styles from './reservations.module.css';
 import { TextField } from "@mui/material";
@@ -13,51 +12,84 @@ import { useSession } from "next-auth/react"; // Import useSession
 
 export default function Reservations() {
     const urlParams = useSearchParams();
-    const cid = urlParams.get('id');
-    const model = urlParams.get('model');
+    const cid = urlParams.get('id'); // Course ID
+    const model = urlParams.get('model'); // Course Model
     const [name, setName] = useState('');
     const [Lastname, setLastname] = useState('');
-
+    const [pickupDate, setPickupDate] = useState<Dayjs | null>(null);
+    const [pickupTime, setPickupTime] = useState<string>(''); // Time state
+    const [pickupLocation, setPickupLocation] = useState<string>('BKK');
+    const [pickupPrice, setPickupPrice] = useState<string>('2000');
     const dispatch = useDispatch<AppDispatch>();
     const { data: session } = useSession(); // Get user session
 
-    const makeReservation = () => {
-        if (cid && model && pickupDate && pickupTime && pickupPrice && name && Lastname) {
-            const item: ReservationItem = {
-                name: name,
-                surname: Lastname,
-                courseId: cid,
-                courseModel: model,
-                pickupDate: dayjs(pickupDate).format("YYYY/MM/DD"),
-                pickupTime: pickupTime,
-                pickupLocation: pickupLocation,
-                pickupPrice: pickupPrice,
-                reservedBy: session?.user?.name || "Guest", // Save user.name
-                userRole: session?.user?.role || "User",   // Save user.role
-            };
-            dispatch(addReservation(item));
+    const makeReservation = async () => {
+        console.log("cid from URL params:", cid);
+    
+        if (!cid || !pickupDate || !pickupPrice || !session?.user?._id) {
+            console.error("Missing required data:", { cid, pickupDate, pickupPrice, userId: session?.user?._id });
+            alert("Some required data is missing.");
+            return;
+        }
+    
+        const bookingData = {
+            shopId: cid, // Ensure cid is passed correctly
+            bookingDate: dayjs(pickupDate).toISOString(),
+            serviceMinute: pickupPrice,
+            userId: session?.user?._id,
+        };
+    
+        console.log("Data sent to backend:", bookingData);
+    
+        try {
+            const response = await fetch(`http://localhost:5000/api/v1/shops/${cid}/bookings`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${session?.user?.token}`,
+                },
+                body: JSON.stringify(bookingData),
+            });
+    
+            if (!response.ok) {
+                throw new Error(`Failed to save booking: ${response.statusText}`);
+            }
+    
+            const result = await response.json();
+            console.log("Backend response:", result);
+            alert("Booking saved successfully!");
+        } catch (error) {
+            console.error("Error saving booking:", error);
+            alert("Failed to save booking. Please try again.");
         }
     };
-
-    const [pickupDate, setPickupDate] = useState<Dayjs | null>(null);
-    const [pickupTime, setPickupTime] = useState<string>(''); // New state for time
-    const [pickupLocation, setPickupLocation] = useState<string>('BKK');
-    const [pickupPrice, setPickupPrice] = useState<string>('2000');
 
     return (
         <main className={styles.reservationsContainer}>
             <div className={styles.reservationTitle}>New Reservation</div>
             <div className={styles.reservationTitle}>Course: {model}</div>
             <div>
-                <TextField name='Name' id="Name" label="Name" variant="standard" value={name}
-                    onChange={(e) => setName(e.target.value)} />
-                <TextField name='Lastname' id="Lastname" label="Lastname" variant="standard" value={Lastname}
-                    onChange={(e) => setLastname(e.target.value)} />
+                <TextField
+                    name="Name"
+                    id="Name"
+                    label="Name"
+                    variant="standard"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                />
+                <TextField
+                    name="Lastname"
+                    id="Lastname"
+                    label="Lastname"
+                    variant="standard"
+                    value={Lastname}
+                    onChange={(e) => setLastname(e.target.value)}
+                />
             </div>
 
             <div className={styles.reservationDetails}>
                 <div className="text-md text-left text-gray-600">Pick-Up Date, Time, and Location</div>
-                <LocationDateReserve 
+                <LocationDateReserve
                     onDateChange={(value: Dayjs) => setPickupDate(value)}
                     onTimeChange={(value: string) => setPickupTime(value)}
                     onLocationChange={(value: string) => setPickupLocation(value)}

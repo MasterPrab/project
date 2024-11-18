@@ -20,7 +20,7 @@ export default function LocationDateReserve({
     const [reserveDate, setReserveDate] = useState<Dayjs | null>(null)
     const [reserveTime, setReserveTime] = useState<string>('')
     const [location, setLocation] = useState('BKK')
-    const [Price, setPrice] = useState('300')
+    const [Price, setPrice] = useState('60')
     
     return (
         <div className="bg-slate-100 rounded-lg space-x-5 space-y-2 w-fit px-10 py-5 flex flex-row justify-center">
@@ -77,9 +77,9 @@ export default function LocationDateReserve({
                 }}
                 className="h-[2em] w-[200px]"
             >
-                <MenuItem value="300">300</MenuItem>
-                <MenuItem value="500">500</MenuItem>
-                <MenuItem value="1000">1000</MenuItem>
+                <MenuItem value="60">60</MenuItem>
+                <MenuItem value="90">90</MenuItem>
+                <MenuItem value="120">120</MenuItem>
             </Select>
         </div>
     )
