@@ -12,4 +12,5 @@ export default async function getUserProfile(token:string) {
         throw new Error("Cannot get user profile")
     }
     return await response.json()
+
 }

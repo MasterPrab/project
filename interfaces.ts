@@ -10,5 +10,7 @@ export interface ReservationItem {
     /*returnLocation: string;*/
     name: string;
     surname: string;
+    reservedBy: string;
+    userRole: string;
 
   }
