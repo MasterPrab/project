@@ -1,27 +1,33 @@
 "use client";
+
 import LocationDateReserve from "@/components/LocationDateReserve";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { addReservation } from "@/redux/features/cartSlice";
 import styles from './reservations.module.css';
-import { TextField } from "@mui/material";
 import { useSession } from "next-auth/react"; // Import useSession
 
 export default function Reservations() {
     const urlParams = useSearchParams();
     const cid = urlParams.get('id'); // Course ID
     const model = urlParams.get('model'); // Course Model
-    const [name, setName] = useState('');
-    const [Lastname, setLastname] = useState('');
     const [pickupDate, setPickupDate] = useState<Dayjs | null>(null);
     const [pickupTime, setPickupTime] = useState<string>(''); // Time state
     const [pickupLocation, setPickupLocation] = useState<string>('BKK');
     const [pickupPrice, setPickupPrice] = useState<string>('2000');
+    const [userName, setUserName] = useState<string>(""); // Automatically filled name
     const dispatch = useDispatch<AppDispatch>();
     const { data: session } = useSession(); // Get user session
+
+    useEffect(() => {
+        // Fetch user name from the session
+        if (session?.user) {
+            setUserName(session.user.name || ""); // Automatically set user name
+        }
+    }, [session]);
 
     const makeReservation = async () => {
         console.log("cid from URL params:", cid);
@@ -37,8 +43,7 @@ export default function Reservations() {
             bookingDate: dayjs(pickupDate).toISOString(),
             serviceMinute: pickupPrice,
             userId: session?.user?._id,
-            name: name, // Add the name entered by the user
-            surname: Lastname, // Add the Lastname entered by the user
+            name: userName, // Automatically set from user data
         };
     
         console.log("Data sent to backend:", bookingData);
@@ -65,27 +70,15 @@ export default function Reservations() {
             alert("Failed to save booking. Please try again.");
         }
     };
+
     return (
         <main className={styles.reservationsContainer}>
             <div className={styles.reservationTitle}>New Reservation</div>
             <div className={styles.reservationTitle}>Course: {model}</div>
-            <div>
-                <TextField
-                    name="Name"
-                    id="Name"
-                    label="Name"
-                    variant="standard"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                />
-                <TextField
-                    name="Lastname"
-                    id="Lastname"
-                    label="Lastname"
-                    variant="standard"
-                    value={Lastname}
-                    onChange={(e) => setLastname(e.target.value)}
-                />
+
+            {/* Display the fetched user name */}
+            <div className={styles.details}>
+                <div className={styles.label}>Name: {userName}</div>
             </div>
 
             <div className={styles.reservationDetails}>
