@@ -37,6 +37,8 @@ export default function Reservations() {
             bookingDate: dayjs(pickupDate).toISOString(),
             serviceMinute: pickupPrice,
             userId: session?.user?._id,
+            name: name, // Add the name entered by the user
+            surname: Lastname, // Add the Lastname entered by the user
         };
     
         console.log("Data sent to backend:", bookingData);
@@ -63,7 +65,6 @@ export default function Reservations() {
             alert("Failed to save booking. Please try again.");
         }
     };
-
     return (
         <main className={styles.reservationsContainer}>
             <div className={styles.reservationTitle}>New Reservation</div>
