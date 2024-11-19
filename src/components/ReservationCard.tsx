@@ -1,74 +1,64 @@
 "use client";
 
-import { AppDispatch, useAppSelector } from "@/redux/store";
-import { useDispatch } from "react-redux";
-import { removeReservation } from "@/redux/features/cartSlice";
-import { useSession } from "next-auth/react"; // Assuming you're using NextAuth for user session
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 import styles from './ReservationCart.module.css';
 
 export default function ReservationCart() {
-    const { data: session } = useSession(); // Get session data (role and name)
-    const loggedInUserName = session?.user?.name || "Guest"; // Get logged-in user's name
-    const loggedInUserRole = session?.user?.role || "user"; // Get logged-in user's role
-    const carItems = useAppSelector((state) => state.cartSlice.carItems); // Get reservations from Redux
-    const dispatch = useDispatch<AppDispatch>();
+    const { data: session } = useSession();
+    const [bookingItems, setBookingItems] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    // Function to handle the removal
-    const handleRemove = (reservationItem: any) => {
-        if (
-            loggedInUserRole === "admin" || // Admin can remove any reservation
-            reservationItem.reservedBy === loggedInUserName // Users can only remove their own reservations
-        ) {
-            dispatch(removeReservation(reservationItem)); // Remove the item from cart
-        } else {
-            // Show a pop-up message if not allowed
-            alert("You can only remove your own reservations."); // Pop-up message
+    useEffect(() => {
+        const fetchBookings = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/api/v1/bookings', {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${session?.user?.token}`,
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch bookings: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                console.log("Booking data from backend:", data);
+                setBookingItems(data.data || []);
+                setLoading(false);
+            } catch (err) {
+                console.error("Error fetching bookings:", err);
+                setLoading(false);
+            }
+        };
+
+        if (session?.user?.token) {
+            fetchBookings();
         }
-    };
+    }, [session]);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div className={styles.container}>
-            {carItems.map((reservationItem) => (
-                <div className={styles.itemCard} key={reservationItem.courseId}>
-                    {/* Course Title */}
-                    <div className={styles.courseTitle}>
-                        {reservationItem.courseModel}
-                    </div>
-
-                    {/* User Information */}
+            {bookingItems.map((booking) => (
+                <div className={styles.itemCard} key={booking._id}>
                     <div className={styles.details}>
-                        <span className={styles.label}>Name:</span> {reservationItem.name} 
+                        <span className={styles.label}>Booking Date:</span> {new Date(booking.bookingDate).toLocaleDateString()}
                     </div>
                     <div className={styles.details}>
-                        <span className={styles.label}>Surname:</span> {reservationItem.surname} 
-                    </div>
-
-                    {/* Reservation Details */}
-                    <div className={styles.details}>
-                        <span className={styles.label}>Pick-up:</span> {reservationItem.pickupDate} from {reservationItem.pickupLocation}
+                        <span className={styles.label}>Service Minutes:</span> {booking.serviceMinute}
                     </div>
                     <div className={styles.details}>
-                        <span className={styles.label}>Time:</span> {reservationItem.pickupTime} 
+                        <span className={styles.label}>User Name:</span> {booking.user?.name || "N/A"}
                     </div>
                     <div className={styles.details}>
-                        <span className={styles.label}>Price:</span> {reservationItem.pickupPrice} 
+                        <span className={styles.label}>Shop Name:</span> {booking.shop?.name || "N/A"}
                     </div>
-
-                    {/* Reserved By and User Role */}
-                    <div className={styles.details}>
-                        <span className={styles.label}>Reserved by:</span> {reservationItem.reservedBy}
-                    </div>
-                    <div className={styles.details}>
-                        <span className={styles.label}>Role:</span> {reservationItem.userRole}
-                    </div>
-
-                    {/* Remove Button */}
-                    <button
-                        className={styles.button}
-                        onClick={() => handleRemove(reservationItem)}
-                    >
-                        Remove from Cart
-                    </button>
                 </div>
             ))}
         </div>
