@@ -8,9 +8,9 @@ export default async function Course() {
     return (
         <>
             <TopMenu />
-            <main className={styles.courseContainer}>
-                <h1 className={styles.heading}>Select Shop</h1>
-                <p className={styles.subheading}>Explore a variety of shops available in our catalog.</p>
+            <main className="min-h-screen p-10 bg-amber-200">
+                <h1 className="text-3xl font-bold text-center mb-4">Select Shop</h1>
+                
                 <CourseCatalog courseJson={courses} /> {/* Pass the fetched data to the catalog */}
             </main>
         </>

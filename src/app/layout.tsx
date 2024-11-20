@@ -5,7 +5,7 @@ import TopMenu from "@/components/TopMenu";
 import { getServerSession } from "next-auth";
 import { NextAuthOptions } from "next-auth";
 import NextAuthProvider from "@/providers/NextAuthProvider";
-import { authOptions } from "./api/auth/[...nextauth]/route";
+import { authOptions } from "@/libs/auth";
 import ReduxProvider from "@/redux/ReduxProvider";
 
 const inter = Inter({ subsets: ["latin"] });

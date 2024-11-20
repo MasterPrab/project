@@ -73,15 +73,16 @@ export default function Reservations() {
     };
 
     return (
-        <main className={styles.reservationsContainer}>
+        <main className="min-h-screen bg-amber-200 p-10 flex flex-col items-center">
             
-            <div className={styles.reservationTitle}>Booking</div>
-            <div className={styles.reservationTitle}>ShopName: {model}</div>
+            <div className="text-4xl font-bold text-center text-gray-800 py-10">Booking</div>
+            <div className="text-4xl font-bold text-center text-gray-800 py-10">Name: {userName} </div>
+            <div className="text-2xl font-semibold text-center mb-8 text-gray-700">ShopName: {model}</div>
             
 
             
-            <div className={styles.reservationDetails}>
-                <div className="text-md text-left text-gray-600">Booking Date and ServiceMinute</div>
+            <div className="bg-gray-100 p-6 rounded-lg shadow-md w-full max-w-md">
+                <div className="text-md text-left text-gray-600 mb-4">Booking Date and ServiceMinute</div>
                 <LocationDateReserve
                     onDateChange={(value: Dayjs) => setPickupDate(value)}
                     
@@ -90,7 +91,7 @@ export default function Reservations() {
             </div>
 
             <button
-                className={styles.reserveButton}
+                className="mt-6 w-full max-w-md bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition-colors"
                 onClick={makeReservation}
             >
                 Book

@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 /* Root Variables for Consistent Theme Colors */
 :root {
   --max-width: 1100px;

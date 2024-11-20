@@ -3,7 +3,7 @@ import Image from 'next/image';
 import TopMenuItem from './TopMenuItem';
 import Link from 'next/link';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/libs/auth';
 
 export default async function TopMenu() {
   const session = await getServerSession(authOptions);
@@ -23,7 +23,7 @@ export default async function TopMenu() {
 
       <TopMenuItem title="Main Page" pageRef="/" />
       <TopMenuItem title="Select Shops" pageRef="/course" />
-      <TopMenuItem title="Make an appointment" pageRef="/cart" />
+      <TopMenuItem title="Booking List" pageRef="/cart" />
       <TopMenuItem title="User Detail" pageRef="/reservations/manage" />
       <TopMenuItem title="Create new User" pageRef="/register" />
     
