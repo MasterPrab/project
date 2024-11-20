@@ -1,18 +1,20 @@
-/* reservations.module.css */
-
 .reservationsContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 90vh; /* Slightly lower height to bring content higher */
+    height: 100vh; /* Full height of the viewport */
     text-align: center;
-    padding-top: 10vh; /* Adjust to lift the content a bit higher */
+    background-color: #f1d7b4; /* Minimal skin tone color */
+    padding-top: 0; /* Remove extra padding */
+    margin: 0; /* Remove margins */
+    box-sizing: border-box; /* Ensure padding and borders are included in the height calculation */
 }
 
 .reservationTitle {
-    font-size: 2rem;
-    font-weight: medium;
+    font-size: 2.5rem; /* Increased font size for better emphasis */
+    font-weight: bold; /* Bold weight for strong visual hierarchy */
+    color: #333; /* Dark gray color for good contrast */
     margin-bottom: 20px;
 }
 
@@ -20,19 +22,31 @@
     width: fit-content;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px; /* Increased gap for better spacing */
     text-align: left;
+    font-size: 1.2rem; /* Slightly larger text for readability */
+    color: #444; /* Softer dark gray for text */
 }
 
 .reserveButton {
     margin-top: 20px;
-    background-color: rgb(59, 130, 246);
-    padding: 10px 20px;
-    border-radius: 5px;
+    background-color: #007bff; /* Bright blue for a strong call to action */
+    padding: 12px 25px; /* Slightly larger padding for a more prominent button */
+    border-radius: 8px; /* More rounded corners for a modern look */
     color: white;
-    transition: background-color 0.3s;
+    font-size: 1.2rem; /* Bigger text for better readability */
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transitions for hover effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for the button */
+    cursor: pointer;
 }
 
 .reserveButton:hover {
-    background-color: #005f99;
+    background-color: #005f99; /* Darker blue for hover state */
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+.reserveButton:active {
+    background-color: #003d80; /* Even darker blue for active state */
+    transform: translateY(0); /* Reset lift effect */
 }

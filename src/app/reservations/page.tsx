@@ -18,7 +18,7 @@ export default function Reservations() {
     const model = urlParams.get('model'); // Course Model
     
     const [pickupDate, setPickupDate] = useState<Dayjs | null>(null);
-    const [pickupPrice, setPickupPrice] = useState<string>('2000');
+    const [pickupPrice, setPickupPrice] = useState<string>('60');
     const [userName, setUserName] = useState<string>(""); // Automatically filled name
     const dispatch = useDispatch<AppDispatch>();
     const { data: session } = useSession(); // Get user session

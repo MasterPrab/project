@@ -1,46 +1,83 @@
-/* courseDetail.module.css */
-
 .courseDetailContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100vh; /* Full viewport height */
-    text-align: center;
+    justify-content: flex-start; /* Align content to start */
+    min-height: 100vh;
     padding: 20px;
+    background-color: #f8e5c1; /* Soft skin-tone background */
+    color: #333;
+    text-align: center;
+}
+
+.courseDetailContainer h1 {
+    font-size: 2.5rem; /* Increase font size for better prominence */
+    font-family: 'Georgia', serif; /* Elegant serif font for a luxurious feel */
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 30px; /* Add more spacing below the heading */
+    margin-top: 40px; /* Add more spacing above the heading */
 }
 
 .courseContent {
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     gap: 20px;
-    width: 80%;
+    width: 100%;
     max-width: 800px;
-    text-align: left;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+@media (min-width: 768px) {
+    .courseContent {
+        flex-direction: row; /* Horizontal layout for larger screens */
+        text-align: left;
+    }
 }
 
 .courseImage {
-    width: 30%;
-    border-radius: 8px;
+    width: 100%;
+    max-width: 250px;
+    border-radius: 5px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow to image */
 }
 
 .courseInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     font-size: 1rem;
-    color: #333;
+    color: #555;
+    line-height: 1.6;
+    max-width: 500px; /* Limit text width for readability */
 }
 
 .reservationButton {
     margin-top: 20px;
-    background-color: rgb(59, 130, 246);
     padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
     border-radius: 5px;
-    color: white;
-    text-align: center;
-    transition: background-color 0.3s;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .reservationButton:hover {
-    background-color: #005f99;
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.reservationButton:active {
+    background-color: #003d80;
+    transform: translateY(0);
 }

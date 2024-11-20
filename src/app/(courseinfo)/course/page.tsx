@@ -4,13 +4,14 @@ import TopMenu from "@/components/TopMenu";
 import styles from './course.module.css';
 
 export default async function Course() {
-    const courses = await getCourses();
+    const courses = await getCourses(); // Fetch shop/course data
     return (
         <>
             <TopMenu />
             <main className={styles.courseContainer}>
                 <h1 className={styles.heading}>Select Shop</h1>
-                <CourseCatalog courseJson={courses} />
+                <p className={styles.subheading}>Explore a variety of shops available in our catalog.</p>
+                <CourseCatalog courseJson={courses} /> {/* Pass the fetched data to the catalog */}
             </main>
         </>
     );
