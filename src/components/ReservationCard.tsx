@@ -25,7 +25,7 @@ export default function ReservationCart() {
     useEffect(() => {
         const fetchBookings = async () => {
             try {
-                const response = await fetch("https://projectbackend2.vercel.app/api/v1/bookings", {
+                const response = await fetch(`${process.env.BACKEND_URL}/api/v1/bookings`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -57,7 +57,7 @@ export default function ReservationCart() {
 
         if (loggedInUserRole === "admin" || reservedBy === loggedInUserId) {
             try {
-                const response = await fetch(`https://projectbackend2.vercel.app/api/v1/bookings/${bookingId}`, {
+                const response = await fetch(`${process.env.BACKEND_URL}/api/v1/bookings/${bookingId}`, {
                     method: "DELETE",
                     headers: {
                         "Content-Type": "application/json",
@@ -96,7 +96,7 @@ export default function ReservationCart() {
         if (!editingBooking) return;
 
         try {
-            const response = await fetch(`https://projectbackend2.vercel.app/api/v1/bookings/${editingBooking}`, {
+            const response = await fetch(`${process.env.BACKEND_URL}/api/v1/bookings/${editingBooking}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
