@@ -20,9 +20,9 @@ const RegisterPage: React.FC = () => {
 
     const handleRegister = async (e: React.FormEvent) => {
         e.preventDefault();
-
+        
         try {
-            const response = await fetch('http://localhost:5000/api/v1/auth/register', {
+            const response = await fetch('https://projectbackend2.vercel.app/api/v1/auth/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

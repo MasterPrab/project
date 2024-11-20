@@ -50,7 +50,7 @@ export default function Reservations() {
         console.log("Data sent to backend:", bookingData);
     
         try {
-            const response = await fetch(`http://localhost:5000/api/v1/shops/${cid}/bookings`, {
+            const response = await fetch(`https://projectbackend2.vercel.app/api/v1/shops/${cid}/bookings`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
