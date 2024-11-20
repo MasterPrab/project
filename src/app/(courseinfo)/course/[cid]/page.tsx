@@ -8,7 +8,7 @@ export default async function courseDetailPage({ params }: { params: { cid: stri
 
     return (
         <main className={styles.courseDetailContainer}>
-            <h1 className="text-lg font-medium">{courseDetail.data.name}</h1>
+            <h1 className="text-lg font-medium">Shop Name: {courseDetail.data.name}</h1>
             <div className={styles.courseContent}>
                 <Image
                     src={courseDetail.data.picture}
@@ -19,6 +19,7 @@ export default async function courseDetailPage({ params }: { params: { cid: stri
                     className={styles.courseImage}
                 />
                 <div className={styles.courseInfo}>
+                    <div>Price Level: {courseDetail.data.priceLevel}</div>
                     <div>Address: {courseDetail.data.address}</div>
                     <div>Province: {courseDetail.data.province}</div>
                     <div>Postal Code: {courseDetail.data.postalcode}</div>
@@ -26,7 +27,7 @@ export default async function courseDetailPage({ params }: { params: { cid: stri
 
                     <Link href={`/reservations?id=${params.cid}&model=${courseDetail.data.name}`}>
                         <button className={styles.reservationButton}>
-                            Make Reservation
+                            Make Booking
                         </button>
                     </Link>
                 </div>
@@ -34,7 +35,8 @@ export default async function courseDetailPage({ params }: { params: { cid: stri
         </main>
     );
 }
-
+/*
 export async function generateStaticParams() {
     return [{ cid: '001' }, { cid: '002' }, { cid: '003' }, { cid: '004' }];
 }
+*/

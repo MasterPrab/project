@@ -1,0 +1,96 @@
+.bookingContainer {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.heading {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.subheading {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+.formGroup {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.label {
+    display: block;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.input,
+.select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+}
+
+.input:focus,
+.select:focus {
+    border-color: #007bff;
+    background-color: #ffffff;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+.bookButton {
+    display: inline-block;
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.bookButton:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.bookButton:active {
+    background-color: #003d80;
+    transform: translateY(0);
+}
+
+.dateAndServiceContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.datePicker {
+    flex: 1;
+}
+
+.selectServiceMinute {
+    flex: 1;
+}

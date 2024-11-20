@@ -9,14 +9,15 @@ import { AppDispatch } from "@/redux/store";
 import { addReservation } from "@/redux/features/cartSlice";
 import styles from './reservations.module.css';
 import { useSession } from "next-auth/react"; // Import useSession
+import Image from "next/image";
 
 export default function Reservations() {
+    
     const urlParams = useSearchParams();
     const cid = urlParams.get('id'); // Course ID
     const model = urlParams.get('model'); // Course Model
+    
     const [pickupDate, setPickupDate] = useState<Dayjs | null>(null);
-    const [pickupTime, setPickupTime] = useState<string>(''); // Time state
-    const [pickupLocation, setPickupLocation] = useState<string>('BKK');
     const [pickupPrice, setPickupPrice] = useState<string>('2000');
     const [userName, setUserName] = useState<string>(""); // Automatically filled name
     const dispatch = useDispatch<AppDispatch>();
@@ -73,20 +74,17 @@ export default function Reservations() {
 
     return (
         <main className={styles.reservationsContainer}>
-            <div className={styles.reservationTitle}>New Reservation</div>
-            <div className={styles.reservationTitle}>Course: {model}</div>
+            
+            <div className={styles.reservationTitle}>Booking</div>
+            <div className={styles.reservationTitle}>ShopName: {model}</div>
+            
 
-            {/* Display the fetched user name */}
-            <div className={styles.details}>
-                <div className={styles.label}>Name: {userName}</div>
-            </div>
-
+            
             <div className={styles.reservationDetails}>
-                <div className="text-md text-left text-gray-600">Pick-Up Date, Time, and Location</div>
+                <div className="text-md text-left text-gray-600">Booking Date and ServiceMinute</div>
                 <LocationDateReserve
                     onDateChange={(value: Dayjs) => setPickupDate(value)}
-                    onTimeChange={(value: string) => setPickupTime(value)}
-                    onLocationChange={(value: string) => setPickupLocation(value)}
+                    
                     onPriceChange={(value: string) => setPickupPrice(value)}
                 />
             </div>
@@ -95,7 +93,7 @@ export default function Reservations() {
                 className={styles.reserveButton}
                 onClick={makeReservation}
             >
-                Reserve
+                Book
             </button>
         </main>
     );

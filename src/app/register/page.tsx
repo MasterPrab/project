@@ -52,7 +52,7 @@ const RegisterPage: React.FC = () => {
             <h2>Register</h2>
             <form onSubmit={handleRegister}>
                 <div>
-                    <label>Name:</label>
+                    <label>Name: </label>
                     <input
                         type="text"
                         value={name}
@@ -61,16 +61,7 @@ const RegisterPage: React.FC = () => {
                     />
                 </div>
                 <div>
-                    <label>Email:</label>
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Telephone:</label>
+                    <label>Telephone Number: </label>
                     <input
                         type="tel"
                         value={tel}
@@ -79,20 +70,29 @@ const RegisterPage: React.FC = () => {
                     />
                 </div>
                 <div>
-                    <label>Role:</label>
-                    <select value={role} onChange={(e) => setRole(e.target.value)}>
-                        <option value="user">User</option>
-                        <option value="admin">Admin</option>
-                    </select>
+                    <label>Email: </label>
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
                 </div>
                 <div>
-                    <label>Password:</label>
+                    <label>Password: </label>
                     <input
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
+                </div>
+                <div>
+                    <label>Role: </label>
+                    <select value={role} onChange={(e) => setRole(e.target.value)}>
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
                 </div>
                 <button type="submit">Register</button>
             </form>

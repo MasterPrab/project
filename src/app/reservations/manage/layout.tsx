@@ -4,7 +4,7 @@ export default function ManageReservationLayout (
         <div className="flex flex-col w-full">
             {children}
             {dashboard}
-            {manage} 
+            {/* {manage}  */}
             
         </div>
     )

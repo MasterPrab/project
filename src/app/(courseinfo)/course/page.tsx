@@ -9,7 +9,7 @@ export default async function Course() {
         <>
             <TopMenu />
             <main className={styles.courseContainer}>
-                <h1 className={styles.heading}>Select a shop you want</h1>
+                <h1 className={styles.heading}>Select Shop</h1>
                 <CourseCatalog courseJson={courses} />
             </main>
         </>

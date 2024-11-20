@@ -10,25 +10,24 @@ export default async function TopMenu() {
 
   return (
     <div className={styles.menucontainer}>
-      {/* Logo as a clickable link to the home page */}
-      <Link href="/">
+      
         <Image 
-          src="/img/messagelogo.jpg" 
+          src="/img/logo.png" 
           className={styles.logoimg} 
           alt="Company Logo" 
           width={50} 
-          height={50} 
+          height={30} 
           priority
         />
-      </Link>
+      
 
-      {/* Navigation Menu Items */}
+      <TopMenuItem title="Main Page" pageRef="/" />
       <TopMenuItem title="Select Shops" pageRef="/course" />
-      <TopMenuItem title="Your Reservation" pageRef="/cart" />
-      <TopMenuItem title="About Us" pageRef="/about" />
+      <TopMenuItem title="Make an appointment" pageRef="/cart" />
+      <TopMenuItem title="User Detail" pageRef="/reservations/manage" />
       <TopMenuItem title="Create new User" pageRef="/register" />
     
-      {/* Conditional Sign-In / Sign-Out based on session */}
+      
       {session ? (
         <Link href="/api/auth/signout">
           <div className={`${styles.authButton} ${styles.signOut}`}>
